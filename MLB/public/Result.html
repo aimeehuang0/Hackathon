@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+  <head>
+    <title>MLB Fanrena</title>
+    <style>
+    	@font-face {
+		    font-family: SFUIText-Heavy;
+		    src: url(/font/SF-UI-Text-Heavy.otf);
+		}
+		@font-face {
+		    font-family: SFUIText-Regular;
+		    src: url(/font/SF-UI-Text-Regular.otf);
+		}
+		@font-face {
+		    font-family: SFUIText-Medium;
+		    src: url(/font/SF-UI-Text-Medium.otf);
+		}
+		@font-face {
+		    font-family: SFUIText-Bold;
+		    src: url(/font/SF-UI-Text-Bold.otf);
+		}
+    	 * { margin: 0; padding: 0; box-sizing: border-box; }
+    	 .topLayer{
+			background:#ffffff;
+			box-shadow:0 1px 0 0 rgba(0,0,0,0.19);
+			width:99%;
+			height: 20%;
+			font-family:SFUIText-Medium;
+			font-size:14px;
+			color:#000000;
+			letter-spacing:0.04px;
+			text-align:center;
+			padding-top: 5%;
+			padding-bottom: 5%;
+		}
+		li{
+			padding: 3%;
+			font-family:SFUIText-Medium;
+			font-size:18px;
+			color:#ffffff;
+			letter-spacing:0.05px;
+			text-align:left;
+		}
+		.headList li{
+			padding: 3%;
+			color:white;
+			font-family:SFUIText-Bold;
+			font-size:18px;
+			color:#ffffff;
+			letter-spacing:0.05px;
+			text-align:left;
+		}
+	
+		.subLayer{
+			font-family:SFUIText-Medium;
+			font-size:14px;
+			color:#000000;
+			letter-spacing:0.04px;
+			text-align:left;
+			padding: 3% 1%;
+		}
+
+    </style>
+  </head>
+  <body>
+  	<div class="topLayer">SCOREBOARD</div>
+  	<!-- <ul class="headList" style="margin-top: 1%;">
+  		<li style="background:#0b3ed3;"><span style="float:left;">Yankees</span><span style="float:right;">3200K</span></li>
+  		<li style="background:#011551"><span style="float:left;">Mets</span><span style="float:right;">2780K</span></li>
+  	</ul> -->
+  	<!-- <div class="subLayer">Ranking</div> -->
+  	<div class="container">
+	  	
+	</div>
+
+	<script src="/socket.io/socket.io.js"></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script>
+		window.setInterval(function(){
+		  /// call your function here
+		  $('.container').empty();
+		  getBookReview();
+		}, 3000);
+		
+
+	    var getBookReview = function(){
+		    $.getJSON('dataset.json', function (data) {
+		        console.log(data);
+
+		      	data.sort(function(a, b){
+				    return b.Score - a.Score;
+				});
+
+				var items = [];
+
+		      	console.log(data);
+		        for (var i = 0; i <data.length ; i++) {
+		        // console.log(jsonResponse.results[i]);
+		        var score = data[i].Score;
+		        var name = data[i].name;
+
+		        if(i%2 == 0)
+		        {
+		        	items.push( "<li style=\"background:#0b3ed3;\"> <span style=\"float:left;\">"+ (i+1)+"&nbsp;&nbsp;&nbsp;&nbsp;"  + name +"</span><span style=\"float:right;\"> Score: "+ score + "</span></li>" );
+		        }
+		        else
+		        {
+		        	items.push( "<li style=\"background:#011551;\"> <span style=\"float:left;\">"+ (i+1)+"&nbsp;&nbsp;&nbsp;&nbsp;"  + name +"</span><span style=\"float:right;\"> Score: "+ score + "</span></li>" );
+		        }       
+		      } 
+
+		      $( "<ul/>", {
+				    "class": "my-new-list",
+				    html: items.join( "" )
+			  }).appendTo( ".container" );
+	    });
+	}
+	</script>
+
+  </body>
+</html>

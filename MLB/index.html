@@ -1,0 +1,491 @@
+<!doctype html>
+<html>
+  <head>
+    <title>MLB Fanrena</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    	@font-face {
+		    font-family: SFUIText-Heavy;
+		    src: url(/font/SF-UI-Text-Heavy.otf);
+		}
+		@font-face {
+		    font-family: SFUIText-Regular;
+		    src: url(/font/SF-UI-Text-Regular.otf);
+		}
+		@font-face {
+		    font-family: SFUIText-Medium;
+		    src: url(/font/SF-UI-Text-Medium.otf);
+		}
+		@font-face {
+		    font-family: SFUIText-Bold;
+		    src: url(/font/SF-UI-Text-Bold.otf);
+		}
+    	body{
+			  background: url("/img/FrontPage.png") no-repeat center center fixed; 
+			  -webkit-background-size: cover;
+			  -moz-background-size: cover;
+			  -o-background-size: cover;
+			  background-size: cover;
+		}
+		input, button, submit { border:none; appearance:none;} 
+		button{
+			background: white;
+		}
+		.logoname{
+			font-family:SFUIText-Heavy;
+			font-size:48px;
+			color:#ffffff;
+			letter-spacing:0.18px;
+			text-align:center;
+			margin-top:30%;
+		}
+		.hidden {
+		  border: 0;
+		  clip: rect(0 0 0 0);
+		  height: 1px;
+		  margin: -1px;
+		  overflow: hidden;
+		  padding: 0;
+		  position: absolute;
+		  width: 1px;
+		}
+		.container
+		{
+			 margin: 0 auto;
+		}
+
+		input{
+			display: block;
+			background:rgba(0,0,0,0.36);
+			width: 250px;
+			
+			padding: 10px 15px;
+			margin: 0 auto -5px auto;
+			text-align: center;
+			font-size: 18px;
+			
+			color: white;
+			
+			transition-duration: 0.25s;
+
+			outline: none;
+
+			opacity:0.68;
+			font-family:SFUIText-Regular;
+			font-size:15px;
+			color:#ffffff;
+			letter-spacing:0.04px;
+			text-align:left;
+		}
+		label{
+			padding-left: 10%;
+			/*border: 1px solid;*/
+			/*padding-bottom: 50px;*/
+		}
+		.clickButton{
+			display: block;
+			background:#002d68;
+			width:319px;
+			height:47px;
+			
+			padding: 10px 15px;
+			margin: 0 auto 10px auto;
+			
+			color: white;
+			
+			transition-duration: 0.25s;
+			font-weight: 300;
+
+			font-family:SFUIText-Medium;
+			font-size:20px;
+			color:#ffffff;
+			letter-spacing:0.06px;
+			text-align:center;
+
+			margin-top:20%;
+		}
+
+		#login-button{
+			/*margin-top:30%;*/
+		}
+
+		.topLayer{
+			background:#ffffff;
+			box-shadow:0 1px 0 0 rgba(0,0,0,0.19);
+			width:99%;
+			height: 20%;
+			font-family:SFUIText-Medium;
+			font-size:14px;
+			color:#000000;
+			letter-spacing:0.04px;
+			text-align:center;
+			padding-top: 5%;
+			padding-bottom: 5%;
+		}
+
+		.topLayer span{
+			display:block;float:right;
+		}
+		.subTopLayer{
+			font-family:SFUIText-Heavy;
+			font-size:20px;
+			color:#000000;
+			letter-spacing:0.06px;
+			text-align:center;
+			padding: 5%;
+			padding-bottom: 0%;
+		}
+		.thirdTopLayer{
+			font-size:15px;
+			color:grey;
+			letter-spacing:0.06px;
+			text-align:center;
+		}
+		.choosebutton{
+			width: 98%;
+			margin: auto;
+			/*border: 1px solid;*/
+		}
+		#choose-form button{
+			margin-top:20%;
+			margin-left: 2%;
+			margin-right: 2%;
+		}
+		#recomm-form1 .thirdTopLayer{
+			margin-bottom:10%;
+		}
+		#recomm-form1 button{
+			width: 48%;
+		}
+		#barrier-form button, #confirmationPage button{
+			background-color: #0B3ED3;
+			width: 105%;
+			font-family:SFUIText-Bold;
+			font-size:20px;
+			color:#ffffff;
+			letter-spacing:0.06px;
+			text-align:left;
+			padding: 7% 3%;
+			margin-top: 1%;
+			margin-left: -2%;
+			overflow:hidden;
+		}
+		#barrier-form button span, #confirmationPage button span{
+			display:block;float:right;
+		}
+		#barrier-form button span .sub
+		{
+			float: left;
+		}
+		.playerImage
+		{
+		    display: block;
+		    margin: 0 auto;
+		}
+		.standsResult{
+			color: black;
+			margin-left: 10%;
+		}
+		#losePage{
+			width: 100%;
+			height: 100%;
+		}
+		#winPage{
+			width: 100%;
+			height: 100%;
+		}
+		#losePage p, #winPage p{
+			font-family:SFUIText-Heavy;
+			color:#ffffff;
+			letter-spacing:0.06px;
+			text-align:center;
+		}
+		a {
+		    color: white;
+		}
+    </style>
+  </head>
+  <body>
+  	
+  	<div class="container">
+	  	<div id="login-form" class="form">
+	  	<div class="logoname">Fanrena</div>
+
+		  	<div class="form__field">
+	          <label for="ticketNo"><span class="hidden">TicketNo</span></label>
+	          <input id="ticketNo" type="text" name="ticketNo" placeholder="Ticket number" required>
+	        </div>
+
+	        <div class="form__field">
+	          <label for="userName"><span class="hidden">Username</span></label>
+	          <input id="userName" type="text" name="userName" placeholder="Name" required>
+	        </div>
+
+	        <div class="form__field">
+	          <label for="email"><span class="hidden">Email</span></label>
+	          <input id="email" type="text" name="email" placeholder="Phone/Email" required>
+	        </div>
+
+			<button id="login-button" class="clickButton" onclick="moveToTeam()">Enter</button>
+		</div>
+
+		<div id="choose-form" class="form">
+			<div class="topLayer">PRE</div>
+			<div class="subTopLayer">CHOOSE SIDE</div>
+			<div class="choosebutton">
+				<button id="yankeeImg" value="yankee" onclick="teamClick('Yankees')"><img src="/img/yankee.png"></button>
+				<button id="MetImg" value="MET" onclick="teamClick('METs')" disabled><img src="/img/met.png"></button>
+			</div>
+		</div>
+
+		<div id="recomm-form1" class="form">
+			<div class="topLayer">1 TOP <span style="text-align: right">Score:0</span></div>
+			<div class="subTopLayer">FIGTH WITH YOUR HERO</div>
+			<div class="thirdTopLayer">(Predict who will score hit)</div>
+			<button id="player1" onclick="PlayerClick('1')" disabled><img src="img/Player1.png" style="max-width:90%"></button>
+			<button id="player2" onclick="PlayerClick('2')"><img src="img/Player2.png" style="max-width:90%"></button>
+			<button id="player3" onclick="PlayerClick('3')" disabled><img src="img/Player3.png" style="max-width:90%"></button>
+			<button id="player4" onclick="PlayerClick('4')" disabled><img src="img/Player4.png" style="max-width:90%"></button>
+		</div>
+
+		<!-- <div id="recomm-form2" class="form">
+			Which Player?
+			<button id="player4" onclick="PlayerClick('4')">Player 4</button>
+			<button id="player5" onclick="PlayerClick('5')">Player 5</button>
+			<button id="player6" onclick="PlayerClick('6')">Player 6</button>
+		</div> -->
+
+		<div id="barrier-form" class="form">
+			<div class="topLayer">1 TOP <span style="text-align: right">Score:0</span></div>
+			<div class="subTopLayer">FIGTH WITH YOUR HERO</div>
+			<div class="thirdTopLayer">(Predict the type of hit)</div>
+			<p style="text-align:center;"><span class="playerImage"></span> </p>
+			<p style="text-align:center;font-family:SFUIText-Bold;font-size:16px;letter-spacing:0.04px;"><span class="playerName"></span> </p>
+			<!-- <div class="playerImage"></div>  -->
+
+			<table style="margin:1%;width:100%;font-family:SFUIText-Medium;font-size:14px;line-height:20px;text-align:center;">
+			  <tr>
+			    <th>HR</th>
+			    <th>AVG</th> 
+			    <th>SLG</th>
+			  </tr>
+			  <tr align="center">
+			    <td>20</td>
+			    <td>.276</td> 
+			    <td>.447</td>
+			  </tr>
+			</table>
+
+			<button id="SingleB" onclick="BClick('Single')">Single <span>+100  </span></button>
+			<button id="DoubleB" onclick="BClick('Double')">Double <span>+200  </span></button>
+			<button id="TripleB" onclick="BClick('Triple')">Triple <span>+300  </span></button>
+			<button id="HRB" style="background-color:#011551;" onclick="BClick('HR')">HR <span>+400</span></button>
+		</div>
+
+		<div id="confirmationPage">
+			<div class="topLayer">1 TOP <span style="text-align: right">Score:0</span></div>
+			<div class="subTopLayer">FIGTH WITH YOUR HERO</div>
+			<div class="thirdTopLayer">(Please wait for the result)</div>
+			<p style="text-align:center"><span class="playerImage"></span> </p>
+			<p style="text-align:center;font-family:SFUIText-Bold;font-size:16px;letter-spacing:0.04px;"><span class="playerName"></span> </p>
+			<table style="margin:1%;width:100%;font-family:SFUIText-Medium;font-size:14px;line-height:20px;text-align:center;">
+			  <tr>
+			    <th>HR</th>
+			    <th>AVG</th> 
+			    <th>SLG</th>
+			  </tr>
+			  <tr align="center">
+			    <td>20</td>
+			    <td>.276</td> 
+			    <td>.447</td>
+			  </tr>
+			</table>
+
+			<div class="chooseButton"></div>
+			<div class="standsResult"></div>
+		</div>
+
+		<div id="winPage" style="background-color: #0b3ed3;">
+			<p style="text-align:center;margin-top: 15%;">CONGRATS!</p>
+			<p style="font-family:SFUIText-Bold;text-align:center;margin-top: 15%;font-size:16px;letter-spacing:0.04px;">Didi Gregorius</p>
+			<p style="font-family:SFUIText-Bold;text-align:center;margin-top: -2%;font-size:32px;letter-spacing:0.09px;">SINGLE</p>
+			<p style="font-family:SFUIText-Regular;text-align:center;margin-top: 15%;font-size:32px;letter-spacing:0.09px;">+100</p>
+			<div class="scoreResult" style="text-align: center;font-family:SFUIText-Medium;margin-top: 30%;font-size:14px;color:#ffffff;letter-spacing:0.04px;"></div> 
+			<!-- <div id="scoreNo"></div> -->
+			<p style="font-family:SFUIText-Medium;text-align:center;font-size:14px;letter-spacing:0.04px;"><a href="Result.html" target="_blank">Check the Result</a></p>
+
+			<button class="clickButton" disabled>Next</button>
+
+		</div>
+		<div id="losePage" style="background-color: #011551;">
+			<p style="text-align:center;margin-top: 15%;">Maybe Next Time.</p>
+			<p style="font-family:SFUIText-Bold;text-align:center;margin-top: 15%;font-size:16px;letter-spacing:0.04px;">Didi Gregorius</p>
+			<p style="font-family:SFUIText-Bold;text-align:center;margin-top: -2%;font-size:32px;letter-spacing:0.09px;">SINGLE</p>
+			<p style="font-family:SFUIText-Regular;text-align:center;margin-top: 15%;font-size:32px;letter-spacing:0.09px;">0</p>
+			<div class="scoreResult" style="text-align: center;font-family:SFUIText-Medium;margin-top: 30%;font-size:14px;color:#ffffff;letter-spacing:0.04px;"></div> 
+			<!-- <div id="scoreNo"></div> -->
+			<p style="font-family:SFUIText-Medium;text-align:center;font-size:14px;letter-spacing:0.04px;"><a href="Result.html" target="_blank">Check the Result</a></p>
+
+			<button class="clickButton" disabled>Next</button>
+		</div>
+
+	</div>
+
+	<script src="/socket.io/socket.io.js"></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script>
+	  // $("#login-form").hide();
+	  $("#choose-form").hide();
+	  $("#recomm-form1").hide();
+	  $("#recomm-form2").hide();
+	  $("#barrier-form").hide();
+	  $("#confirmationPage").hide();
+	  $("#scorePage").hide();
+	  $("#losePage").hide();
+	  $("#winPage").hide();
+
+	  var socket = io();
+	  socket.emit("landing","landing")
+
+	  var userInfo = {};
+
+	  function moveToTeam(){
+	  		console.log("login success");
+
+		  	userInfo.name = $("#userName").val();
+		  	userInfo.ticket = $("#ticketNo").val();
+		  	userInfo.email = $("#email").val();
+
+		    $("#login-form").hide();
+		    $("#choose-form").show();
+		    $("body").css("background-image","none");
+	  }
+
+	  function teamClick(x){
+	  		
+	  		userInfo.team = x;
+	  		console.log("ChooseTEam"+x);
+
+	  		if(userInfo.team == 'Yankees')
+	  		{
+	  			$("#recomm-form1").show();
+	  		}
+	  		else
+	  		{
+	  			$("#recomm-form2").show();
+	  		}
+
+	  		$("#choose-form").hide();
+	  }
+
+	  function PlayerClick(z){
+	  		
+	  		userInfo.Player = z;
+	  		console.log("ChoosedHR"+z);
+
+	  		if(userInfo.Player == 1 )
+	  		{
+	  			console.log("Player1"+userInfo.Player);
+	  			$(".playerImage").html("<img src='/img/1.png'>");
+	  		}
+	  		else if(userInfo.Player == 2 )
+	  		{
+	  			console.log("Player2"+userInfo.Player);
+	  			$(".playerImage").html("<img src='/img/2.png'>");
+	  			$(".playerName").html("Didi Gregorious");
+	  		}
+	  		else if(userInfo.Player == 3 )
+	  		{
+	  			console.log("Player3"+userInfo.Player);
+	  			$(".playerImage").html("<img src='/img/3.png'>");
+	  		}
+	  		else if(userInfo.Player == 4 )
+	  		{
+	  			console.log("Player4"+userInfo.Player);
+	  			$(".playerImage").html("<img src='/img/4.png'>");
+	  		}
+	  		else if(userInfo.Player == 5 )
+	  		{
+	  			console.log("Player5"+userInfo.Player);
+	  			$(".playerImage").html("<img src='/img/5.png'>");
+	  		}
+	  		else if(userInfo.Player == 6 )
+	  		{
+	  			console.log("Player6"+userInfo.Player);
+	  			$(".playerImage").html("<img src='/img/6.png'>");
+	  		}
+
+	  		$("#recomm-form1").hide();
+	  		$("#recomm-form2").hide();
+	  		$("#barrier-form").show();
+
+	  }
+
+	  function BClick(a){
+	  		
+	  		userInfo.Barrier = a;
+	  		userInfo.Score = 0;
+
+	  		if((userInfo.Barrier == "Single" && userInfo.Player == 2) || (userInfo.Barrier == "Single" && userInfo.Player == 4))
+	  		{
+	  			userInfo.Score = 100;
+	  			console.log("Score:"+userInfo.Score);
+	  		}
+
+	  		if(userInfo.Barrier == "Single")
+	  		{
+				$( ".chooseButton" ).html( "<button id=\"SingleB\" disabled>Single <span>+100  </span><br><span style=\"font-family:SFUIText-Regular;font-size:12px;color:#ffffff;letter-spacing:0.05px;float:left;\">2111 people stand with you</span></button>" );
+				// $( ".standsResult" ).html( "2111 people stand with you" );
+	  		}
+	  		else if(userInfo.Barrier == "Double")
+	  		{
+	  			$( ".chooseButton" ).html( "<button id=\"DoubleB\" disabled>Double <span>+200  </span><br><span style=\"font-family:SFUIText-Regular;font-size:12px;color:#ffffff;letter-spacing:0.05px;float:left;\">5001 people stand with you</span></button>" );
+	  			// $( ".standsResult" ).html( "5001 people stand with you" );
+	  		}
+	  		else if(userInfo.Barrier == "Triple")
+	  		{
+	  			$( ".chooseButton" ).html( "<button id=\"TripleB\" disabled>Triple <span>+300  </span><br><span style=\"font-family:SFUIText-Regular;font-size:12px;color:#ffffff;letter-spacing:0.05px;float:left;\">1401 people stand with you</span></button>" );
+	  			// $( ".standsResult" ).html( "1401 people stand with you" );
+	  		}
+	  		else if(userInfo.Barrier == "HR")
+	  		{
+	  			$( ".chooseButton" ).html( "<button id=\"HRB\" style=\"background-color:#011551;\" disabled>HR <span>+400  </span><br><span style=\"font-family:SFUIText-Regular;font-size:12px;color:#ffffff;letter-spacing:0.05px;float:left;\">367 people stand with you</span></button>" );
+	  		}
+
+	  		console.log("ChoosedHR"+a);
+
+	  		
+	  		$("#barrier-form").hide();
+	  		$("#confirmationPage").show();
+
+	  		socket.emit("sub",userInfo);
+
+	  		setTimeout(
+				  function() 
+				  {
+				  	 $("#confirmationPage").hide();
+				     $(".scoreResult").html("Score: "+userInfo.Score);
+				     // $("#scoreNo").html(userInfo.Score);
+				  	 if(userInfo.Score<=0)
+				  	 {
+				  	 	$("body").css("background-color","#011551");
+				  	 	$("#losePage").show();
+				  	 }
+				  	 else
+				  	 {
+				  	 	$("body").css("background-color","#0b3ed3");
+				  	 	$("#winPage").show();
+
+				  	 }
+				     
+				  }, 20000);
+			}
+
+
+	  //socket.emit("sub",userInfo);
+
+	</script>
+
+  </body>
+</html>
